@@ -1,6 +1,5 @@
 
-// import ToggleThemeButton from "./ToggleThemeButton.jsx";
-// import { useTheme } from "./themeProvider.jsx";
+
 
 import { ThemeProvider } from "./ThemeProvider.jsx";
 import Header from "./Header.jsx";
