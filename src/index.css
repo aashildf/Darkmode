@@ -5,11 +5,22 @@
   box-sizing: border-box;
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 :root{
   --bg-color:#f5f5f5;
   --text-color:#222222;
   --btn-bg:#333333;
   --btn-text:#ffffff;
+  --glow-1: #b3f8f8;
+  --glow-2: #cdcdf8;
+  --glow-3: #dabaf9;
+  --glow-3: #bad2f9;
+  --card-bg:#d3e2e546;
 }
 
 body.dark{
@@ -17,12 +28,17 @@ body.dark{
   --text-color:#f5f5f5;
   --btn-bg:#eeeeee;
   --btn-text:#000000;
+  --glow-1: #00ffff;
+  --glow-2: #0000ff;
+  --glow-3: #8000ff;
+  --card-bg: #1c1f2b;
 }
+
 
 body{
   background-color: var(--bg-color);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:  sans-serif, Verdana, Tahoma, sans-serif;
   min-height: 100vh;
   color: var(--text-color);
   display: flex;
@@ -71,20 +87,55 @@ h1{
   transform: scale(0.95);
 }
 
-/* ------------GLASS-MORFISM--------------- */
+/* ------------CARDS-------------- */
 
-.glass-card{
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 25px;
+
+.card{
+  position: relative;
+  background: var(--card-bg);
+  padding: 2em;
+  margin: 0.5em;
   border-radius: 20px;
+  background-clip: border-box;
+  /* box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.08),
+    0 20px 40px rgba(0,0,0,0.25); */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
 }
+
+.card::after,
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px; /* justerer overlap med glow på kanten  */
+  border-radius:inherit;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 30%, /* hvor mye av ringen som lyser */
+    var(--glow-1),
+    var(--glow-2),
+    var(--glow-3),
+    transparent
+  );
+
+   animation: spin 4s linear infinite;
+   z-index: -1;
+}
+
+
+.card::before {
+  filter: blur(1.6rem);
+  opacity: 0.5; /* (styrke på gløden) */
+}
+
+.card::after {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.15));
+}
+
+
 
 .status-card { grid-column: 1 / 2; }
 .icon-card {
@@ -109,14 +160,25 @@ h1{
 
 .big-icon{
   filter: drop-shadow(0 0 10px var(--text-color));
+  font-size: 4rem;
+  display: block;
+  text-align: center;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 15px var(--glow-1));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .line-decoration{
   width: 50px;
   height: 4px;
-  background: var(--btn-bg);
-  margin-top: 15px;
-  border-radius: 2px;
+  background: linear-gradient(90deg, var(--glow-1), var(--glow-3));
+  margin: 15px auto;
+  border-radius: 10px;
 }
 
 .joke-box{
@@ -125,3 +187,68 @@ h1{
   border-left: 3px solid var(--btn-bg);
   font-style:italic;
 }
+
+
+@keyframes spin {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+
+.bug{
+  position: absolute;
+  font-size: 1.2rem;
+  z-index: 10;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+/* Skjul bugs i Dark Mode */
+body.dark .bug {
+  display: none;
+}
+
+/* De forskjellige insektene får ulike startposisjoner og animasjoner */
+.bug-1{
+  top: -10px;
+  left: 10%;
+  animation: crawl-horizontal 8s linear infinite,
+  wiggle 0.2s infinite;
+}
+
+.bug-2{
+  bottom: 20%;
+  right: -10px;
+  animation: crawl-vertical 6s linear infinite reverse,
+  wiggle 0.2s infinite;
+}
+
+.bug-3{
+top: 50%;
+left: -10px;
+animation: crawl-vertical 10s linear infinite,
+wiggle 0.3s infinite;
+}
+
+/* bevegelse animasjon */
+@keyframes crawl-horizontal {
+  0% { left: -10%; transform: rotate(90deg); }
+  100% { left: 110%; transform: rotate(90deg); }
+}
+
+@keyframes crawl-vertical{
+  0% { top: -10%; transform: rotate(180deg); }
+  100% { top: 110%; transform: rotate(180deg); }
+}
+
+
+
+/* Respekter brukere som ikke vil ha animasjon */
+@media (prefers-reduced-motion: reduce) {
+  .card::before,
+  .card::after {
+    animation: none;
+  }
+}
+
+
