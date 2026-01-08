@@ -5,14 +5,35 @@ import ToggleThemeButton from "./ToggleThemeButton";
 const MainSection = () => {
     const {theme}= useContext(ThemeContext);
 
-    return(
-        <main className="container">
-            <h1>
-                {theme === "light" ? "Du bruker nå light mode!" : "Du bruker nå dark mode!"}
-            </h1>
-            <p style= {{ marginBottom: "2rem", fontSize: "1.2rem"}}>"Why do programmers prefer darkmode? Because light attracts bugs"</p>
-            <ToggleThemeButton />
-        </main>
+    return (
+      <main className="bento-grid">
+        {/* boks 1 - stor*/}
+        <div className="glass-card status-card">
+          <span className="badge">MODE</span>
+          <h1>
+            {theme === "light"
+              ? "Du bruker nå light mode!"
+              : "Du bruker nå dark mode!"}
+          </h1>
+          <div className="line-decoration"></div>
+          </div>
+
+        {/* boks 2 - ikon */}
+        <div className="glass-card icon-card">
+            <span className="big-icon">{theme === "light" ? "☀️" : "🌙"}</span>
+        </div>
+
+                {/* boks 3- vitsen */}
+          <div className="glass-card joke-card">
+            <p className="quote">"Why do programmers prefer darkmode?"</p>
+            <p className="punchline">Because light attracts bugs.</p>
+          </div>
+
+          {/* boks 4 - knapp */}
+                <div className="glass-card button-card">
+          <ToggleThemeButton />
+        </div>
+      </main>
     );
 };
 

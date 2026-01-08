@@ -21,7 +21,7 @@ body.dark{
 
 body{
   background-color: var(--bg-color);
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
   color: var(--text-color);
@@ -30,17 +30,25 @@ body{
   align-items: center;
 }
 
-.container{
-  width:clamp(350px, 90vw, 800px);
-  text-align: center;
-  pad: 2rem;
-}
-
 h1{
     font-size: clamp(1.8rem, 10vw, 5rem);
     margin: 1.5rem;
     text-align: center;
 }
+
+/* ---------GRID---------- */
+
+.bento-grid{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap:20px;
+  width: clamp(350px, 90vw, 900px);
+  margin: 20px;
+}
+
+
+/* --------------------KNAPPER----------------- */
 
 .theme-btn{
   background-color:var(--btn-bg);
@@ -61,4 +69,59 @@ h1{
 
 .theme-btn:active{
   transform: scale(0.95);
+}
+
+/* ------------GLASS-MORFISM--------------- */
+
+.glass-card{
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.status-card { grid-column: 1 / 2; }
+.icon-card {
+  grid-column: 2/3;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.joke-card{ grid-column: 1/2};
+.icon-card{
+  grid-column: 2/3;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.badge{
+  font-size: 0.76em;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.big-icon{
+  filter: drop-shadow(0 0 10px var(--text-color));
+}
+
+.line-decoration{
+  width: 50px;
+  height: 4px;
+  background: var(--btn-bg);
+  margin-top: 15px;
+  border-radius: 2px;
+}
+
+.joke-box{
+  margin: 2rem 0;
+  padding: 1rem;
+  border-left: 3px solid var(--btn-bg);
+  font-style:italic;
 }
