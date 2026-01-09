@@ -1,3 +1,51 @@
+Bento Glow Dashboard
+Et responsivt dashboard bygget med React, som viser mørkt og lyst modus, med animerte CSS-effekter og lekne brukeropplevelser.
+
+Funksjoner:
+Bento Grid Layout: Et fleksibelt grid-system som organiserer innholdet i bokser.
+
+Dynamic Dark Mode: Full støtte for lyst og mørkt tema via React Context API.
+
+Animated Borders: Egendefinerte "Glow-rammer" som bruker conic-gradient og CSS @property for myke rotasjoner.
+
+"Light Attracts Bugs"-funksjon: En humoristisk vri der små insekter (🐛, 🪳) invaderer skjermen når brukeren skrur på Light Mode – inspirert av den klassiske programmerervitsen.
+
+Responsive ikoner: Ikoner som gløder og endrer seg basert på valgt tema.
+
+Teknologier brukt:
+React: For komponentbasert arkitektur.
+
+CSS3: Animasjoner, variabler (Custom Properties) og Grid-layout.
+
+React Context: For global tilstandshåndtering (Theme).
+
+Lucide React:  For vektorgrafikk-ikoner.
+
+🐛 Om "Bug"-funksjonen
+"Why do programmers prefer dark mode? Because light attracts bugs."
+
+Når applikasjonen er i Light Mode, vil CSS-animasjoner trigge små insekter som kryper rundt på kortene. Disse er bygget med nøstede animasjoner (crawl og wiggle) for å skape en realistisk, nervøs bevegelse.
+
+🔧 Installasjon
+Klone repoet:
+
+Bash
+
+git clone https://github.com/ditt-brukernavn/bento-glow.git
+Installer avhengigheter:
+
+Bash
+
+npm install
+Kjør prosjektet lokalt:
+
+Bash
+
+npm run dev
+🎨 CSS Høydepunkter
+For å unngå at animasjoner krangler, bruker prosjektet isolation: isolate og background-clip: padding-box på kortene. Dette sikrer at den animerte rammen holder seg bak den solide bakgrunnen, selv med komplekse lag-strukturer.
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
