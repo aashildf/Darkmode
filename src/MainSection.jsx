@@ -13,7 +13,7 @@ const MainSection = () => {
           <span className="badge">MODE</span>
           <div className="bug bug-1">🪲</div>
           <div className="bug bug-2">🪳</div>
-          <div className="bug bug-3">🐜</div>
+          <div className="bug bug-3">🦠</div>
           <h1>
             {theme === "light"
               ? "Du bruker nå light mode!"

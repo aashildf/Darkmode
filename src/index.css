@@ -201,6 +201,7 @@ h1{
   z-index: 10;
   pointer-events: none;
   filter: grayscale(0.5);
+  
 }
 
 /* Skjul bugs i Dark Mode */
@@ -212,33 +213,37 @@ body.dark .bug {
 .bug-1{
   top: -10px;
   left: 10%;
-  animation: crawl-horizontal 8s linear infinite,
-  wiggle 0.2s infinite;
+  animation: crawl-horizontal 20s linear infinite,
+  wiggle 0.15s ease-in-out infinite;
 }
 
 .bug-2{
   bottom: 20%;
   right: -10px;
-  animation: crawl-vertical 6s linear infinite reverse,
-  wiggle 0.2s infinite;
+  animation: crawl-vertical 12s linear infinite reverse;
 }
 
 .bug-3{
-top: 50%;
+bottom: 0%;
 left: -10px;
-animation: crawl-vertical 10s linear infinite,
-wiggle 0.3s infinite;
+animation: wiggle 0.15s ease-in-out infinite;
 }
 
 /* bevegelse animasjon */
+
+@keyframes wiggle {
+  0% { transform: rotate(92deg) scale(1); }
+  50% { transform: rotate(88deg) scale(1.05); }
+  100% { transform: rotate(92deg) scale(1); }
+}
 @keyframes crawl-horizontal {
   0% { left: -10%; transform: rotate(90deg); }
   100% { left: 110%; transform: rotate(90deg); }
 }
 
 @keyframes crawl-vertical{
-  0% { top: -10%; transform: rotate(180deg); }
-  100% { top: 110%; transform: rotate(180deg); }
+  0% { top: -10%; transform: rotate(0deg); }
+  100% { top: 110%; transform: rotate(0deg); }
 }
 
 
