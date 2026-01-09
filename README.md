@@ -1,4 +1,8 @@
 Bento Glow Dashboard
+
+![darkmode](https://github.com/user-attachments/assets/8a8ebd79-c5c2-4382-85df-33472299fa27)
+
+
 Et responsivt dashboard bygget med React, som viser mørkt og lyst modus, med animerte CSS-effekter og lekne brukeropplevelser.
 
 Funksjoner:
